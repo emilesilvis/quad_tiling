@@ -1,3 +1,5 @@
+//todo
+
 int rows = 30;
 int columns = 30;
 float cellWidth;
@@ -44,6 +46,7 @@ void setup() {
   
   //draw quads
   translate(margin, margin);
+  noStroke();
   for(int i = 0; i < columns; i++) {
     for(int j = 0; j < rows; j++) {
       float x = (i * cellWidth);
@@ -63,22 +66,26 @@ void setup() {
       }
     }
   }
- 
-  //visualise grid
-  //fill(0);
-  //for(int i = 0; i < columns; i++) {
-  //  line((i + 1) * cellWidth, 0, (i + 1) * cellWidth, height);
-  //  for(int j = 0; j < rows; j++) {
-  //    line(0, (j + 1) * cellHeight, width, (j + 1) * cellHeight);
-      
-  //    // visiluase cell coordinates
-  //    text((i + 1) + ":" + (j + 1), i * cellWidth , j * cellHeight + 10);
-      
-  //    // visiluase cell contents
-  //    text(grid[i][j], i * cellWidth , j * cellHeight + 25);
-  //  }
-  //}
-  
+
+  // draw borders
+  stroke(0);
+  noFill();
+  for(int i = 0; i < columns; i++) {
+    for(int j = 0; j < rows; j++) {
+      float x = (i * cellWidth);
+      float y = (j * cellHeight);
+      if(grid[i][j] == 1) {
+        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight - cellPadding * 2);
+      } else if(grid[i][j] == 2) {  
+        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight - cellPadding * 2);  
+      } else if (grid[i][j] == 3) {
+        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
+      } else if (grid[i][j] == 4) {
+        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
+      }
+    }
+  }
+
   noLoop();
  //
 }
