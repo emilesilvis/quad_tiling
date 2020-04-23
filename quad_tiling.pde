@@ -1,8 +1,7 @@
-//todo: spacing between quads
 //todo: border around?
 
-int rows = 24;
-int columns = 24;
+int rows = 20;
+int columns = 20;
 float cellWidth;
 float cellHeight;
 float cellPadding;
@@ -13,6 +12,7 @@ void setup() {
   size(700, 700);
   cellWidth = width/columns;
   cellHeight = height/rows;
+  cellPadding = 2;
     
   //populate grid with 1s
   for(int i = 0; i < columns; i++) {
@@ -49,16 +49,16 @@ void setup() {
       float y = (j * cellHeight);
       if(grid[i][j] == 1) {
         fill(66, 135, 245);
-        rect(x, y, cellWidth, cellHeight);
+        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight - cellPadding * 2);
       } else if(grid[i][j] == 2) {  
         fill(235, 64, 52);
-        rect(x, y, cellWidth * 2, cellHeight);  
+        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight - cellPadding * 2);  
       } else if (grid[i][j] == 3) {
         fill(252, 186, 3);
-        rect(x, y, cellWidth, cellHeight * 2);
+        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
       } else if (grid[i][j] == 4) {
         fill(3, 252, 61);
-        rect(x, y, cellWidth * 2, cellHeight * 2);
+        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
       }
     }
   }
