@@ -14,23 +14,22 @@ void setup() {
   cellHeight = (height/rows) - (margin*2/rows);
   cellPadding = 2;
   
-    
   //populate grid with 1s
   for(int i = 0; i < columns; i++) {
     for(int j = 0; j < rows; j++) {
       grid[i][j] = 1;
     }
   }
-      
+  
   //populate grid with quad odds
   for(int i = 0; i < columns; i++) {
     for(int j = 0; j < rows; j++) {
-      float r = random(1); //<>// //<>//
+      float r = random(1); 
       if(r < 0.3 && grid[i][j] != 0 && i < (columns-1) && grid[i+1][j] == 1) { // sideways rect
         grid[i][j] = 2;
         grid[i+1][j] = 0;
       } else if (r < 0.6 && grid[i][j] != 0 && j < (rows-1) && grid[i][j+1] == 1) { // standing rect
-        grid[i][j] = 3; //<>// //<>//
+        grid[i][j] = 3; 
         grid[i][j + 1] = 0;
       } else if (r < 0.8 && grid[i][j] != 0 && i < (columns-1) && j < (rows-1) && grid[i+1][j] == 1 && grid[i][j+1] == 1 && grid[i + 1][j + 1] == 1) { // big square
          grid[i][j] = 4;
