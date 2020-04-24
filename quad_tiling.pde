@@ -1,7 +1,7 @@
 // TODO: deform quads and borders
 
-int rows = 30;
-int columns = 30;
+int rows = 10;
+int columns = 10;
 float cellWidth;
 float cellHeight;
 float cellPadding;
@@ -15,7 +15,7 @@ void setup() {
   margin = 20;
   cellWidth = (width/columns) - (margin*2/columns);
   cellHeight = (height/rows) - (margin*2/rows);
-  cellPadding = 3;
+  cellPadding = 4;
 
   //populate grid with 1s
   for(int i = 0; i < columns; i++) {
@@ -45,46 +45,54 @@ void setup() {
     }
   }
 
-  //draw quads
   translate(margin, margin);
-  noStroke();
+  //draw quads
   for(int i = 0; i < columns; i++) {
     for(int j = 0; j < rows; j++) {
       float x = (i * cellWidth);
       float y = (j * cellHeight);
-      fill(randomColour());
-      if(grid[i][j] == 1) {
-        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight - cellPadding * 2);
-      } else if(grid[i][j] == 2) {
-        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight - cellPadding * 2);
-      } else if (grid[i][j] == 3) {
-        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
-      } else if (grid[i][j] == 4) {
-        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
-      }
-    }
-  }
+ 
+      float startX = x + cellPadding;
+      float startY = y + cellPadding;
+      float shortWidth = x + cellWidth;
+      float shortHeight = y + cellHeight;
+      float longWidth = x + cellWidth * 2;
+      float longHeight = y + cellHeight * 2;
 
-  // draw borders
-  stroke(0);
-  noFill();
-  for(int i = 0; i < columns; i++) {
-    for(int j = 0; j < rows; j++) {
-      float x = (i * cellWidth);
-      float y = (j * cellHeight);
+      fill(randomColour());
+      
       if(grid[i][j] == 1) {
-        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight - cellPadding * 2);
+        // fill(3, 252, 61);
+        filledQuad(startX, startY, shortWidth, startY, shortWidth, shortHeight, startX, shortHeight);
+        emptyQuad(startX, startY, shortWidth, startY, shortWidth, shortHeight, startX, shortHeight);
       } else if(grid[i][j] == 2) {
-        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight - cellPadding * 2);
+        // fill(252, 186, 3);
+        filledQuad(startX, startY, longWidth, startY, longWidth, shortHeight, startX, shortHeight);
+        emptyQuad(startX, startY, longWidth, startY, longWidth, shortHeight, startX, shortHeight);
       } else if (grid[i][j] == 3) {
-        rect(x + cellPadding, y + cellPadding, cellWidth - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
+        // fill(3, 86, 252);
+        filledQuad(startX, startY, shortWidth, startY, shortWidth, longHeight, startX, longHeight);
+        emptyQuad(startX, startY, shortWidth, startY, shortWidth, longHeight, startX, longHeight);
       } else if (grid[i][j] == 4) {
-        rect(x + cellPadding, y + cellPadding, cellWidth * 2 - cellPadding * 2, cellHeight * 2 - cellPadding * 2);
+        // fill(252, 3, 69);
+        filledQuad(startX, startY, longWidth, startY, longWidth, longHeight, startX, longHeight);
+        emptyQuad(startX, startY, longWidth, startY, longWidth, longHeight, startX, longHeight);
       }
     }
   }
 
   noLoop();
+}
+
+void filledQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+  noStroke();
+  quad(x1, y1, x2, y2, x3, y3, x4, y4);
+}
+
+void emptyQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
+  stroke(0);
+  noFill();
+  quad(x1, y1, x2, y2, x3, y3, x4, y4);
 }
 
 color randomColour() {
