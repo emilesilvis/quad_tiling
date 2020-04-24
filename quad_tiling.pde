@@ -59,19 +59,15 @@ void setup() {
       fill(randomColour());
       
       if(grid[i][j] == 1) {
-        // fill(3, 252, 61);
         filledQuad(startX, startY, shortWidth, startY, shortWidth, shortHeight, startX, shortHeight);
         emptyQuad(startX, startY, shortWidth, startY, shortWidth, shortHeight, startX, shortHeight);
       } else if(grid[i][j] == 2) {
-        // fill(252, 186, 3);
         filledQuad(startX, startY, longWidth, startY, longWidth, shortHeight, startX, shortHeight);
         emptyQuad(startX, startY, longWidth, startY, longWidth, shortHeight, startX, shortHeight);
       } else if (grid[i][j] == 3) {
-        // fill(3, 86, 252);
         filledQuad(startX, startY, shortWidth, startY, shortWidth, longHeight, startX, longHeight);
         emptyQuad(startX, startY, shortWidth, startY, shortWidth, longHeight, startX, longHeight);
       } else if (grid[i][j] == 4) {
-        // fill(252, 3, 69);
         filledQuad(startX, startY, longWidth, startY, longWidth, longHeight, startX, longHeight);
         emptyQuad(startX, startY, longWidth, startY, longWidth, longHeight, startX, longHeight);
       }
