@@ -1,0 +1,1 @@
+Copied from https://www.reddit.com/r/generative/comments/g5low4/offset_quads/, who was inspired by https://www.reddit.com/r/generative/comments/g07wgz/rythm/.
