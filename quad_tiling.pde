@@ -1,3 +1,5 @@
+// TODO: deform quads and borders
+
 int rows = 30;
 int columns = 30;
 float cellWidth;
