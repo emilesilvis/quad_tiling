@@ -1,22 +1,19 @@
-// TODO: deform quads and borders
-
-int rows = 10;
-int columns = 10;
+int rows = 30;
+int columns = 30;
 float cellWidth;
 float cellHeight;
-float cellPadding;
-float margin;
+float cellPadding = 6;
+float margin = 20;
+float deformOffset = 1.5;
 int[][] grid = new int[rows][columns];
 
 void setup() {
   size(600, 600);
   pixelDensity(2);
   background(255);
-  margin = 20;
   cellWidth = (width/columns) - (margin*2/columns);
   cellHeight = (height/rows) - (margin*2/rows);
-  cellPadding = 4;
-
+  
   //populate grid with 1s
   for(int i = 0; i < columns; i++) {
     for(int j = 0; j < rows; j++) {
@@ -86,13 +83,15 @@ void setup() {
 
 void filledQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
   noStroke();
-  quad(x1, y1, x2, y2, x3, y3, x4, y4);
+  quad(x1 + random(-deformOffset, deformOffset), y1 + random(-deformOffset, deformOffset), x2 + random(-deformOffset, deformOffset), y2 + random(-deformOffset, deformOffset), x3 + random(-deformOffset, deformOffset), y3 + random(-deformOffset, deformOffset), x4 + random(-deformOffset, deformOffset), y4 + random(-deformOffset, deformOffset));
 }
 
 void emptyQuad(float x1, float y1, float x2, float y2, float x3, float y3, float x4, float y4) {
-  stroke(0);
+  stroke(80);
+  strokeWeight(1.25);
+  strokeJoin(ROUND);
   noFill();
-  quad(x1, y1, x2, y2, x3, y3, x4, y4);
+  quad(x1 + random(-deformOffset, deformOffset), y1 + random(-deformOffset, deformOffset), x2 + random(-deformOffset, deformOffset), y2 + random(-deformOffset, deformOffset), x3 + random(-deformOffset, deformOffset), y3 + random(-deformOffset, deformOffset), x4 + random(-deformOffset, deformOffset), y4 + random(-deformOffset, deformOffset));
 }
 
 color randomColour() {
